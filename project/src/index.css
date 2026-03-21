@@ -39,16 +39,6 @@ main {
   div[style*="display: flex"] {
     flex-wrap: wrap;
   }
-  
-  /* Make sidebar stack vertically on tablets */
-  div[style*="width: 250px"] {
-    width: 100% !important;
-    min-height: auto !important;
-    display: flex !important;
-    flex-direction: row !important;
-    overflow-x: auto !important;
-    padding: 10px !important;
-  }
 }
 
 @media screen and (max-width: 768px) {
@@ -82,18 +72,44 @@ main {
     max-width: 100% !important;
   }
 
-  /* Force vertical stacking on mobile for main container layouts that use 100vh flex */
-  div[style*="minHeight: 100vh"], 
-  div[style*="min-height: 100vh"] {
-    flex-direction: column !important;
+  /* Admin Header - Target the sticky top bar */
+  div[style*="z-index: 50"], div[style*="zIndex: 50"] {
+    height: auto !important;
+    padding-bottom: 10px !important;
   }
 
-  /* Adjust headers to stack vertically rather than squeezed */
-  header, nav, div[style*="height: 80px"] {
-    height: auto !important;
+  /* Admin Header Inner - Stack child items vertically */
+  div[style*="z-index: 50"] > div, div[style*="zIndex: 50"] > div {
     flex-direction: column !important;
-    padding: 15px !important;
+    align-items: center !important;
+    padding: 10px !important;
     gap: 15px !important;
+  }
+
+  /* Admin Nav (middle element in header) - Make it scroll horizontally */
+  div[style*="z-index: 50"] > div > div:nth-child(2),
+  div[style*="zIndex: 50"] > div > div:nth-child(2),
+  div[style*="gap: 24px"], div[style*="gap:24px"] {
+    width: 100% !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    justify-content: flex-start !important;
+    padding-bottom: 5px !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Ensure navigation buttons don't wrap */
+  div[style*="gap: 24px"] button, div[style*="gap:24px"] button {
+    white-space: nowrap !important;
+  }
+
+  /* Admin Header Right (User badge & Logout) */
+  div[style*="z-index: 50"] > div > div:last-child,
+  div[style*="zIndex: 50"] > div > div:last-child {
+    width: 100% !important;
+    justify-content: space-between !important;
+    padding-top: 10px !important;
+    border-top: 1px solid rgba(255,255,255,0.1) !important;
   }
 
   /* Scale down large typography for mobile */
@@ -106,6 +122,6 @@ main {
   
   /* Ensure padding inside main content area isn't too large */
   div[style*="padding: 30px"] {
-    padding: 15px !important;
+    padding: 12px !important;
   }
 }
