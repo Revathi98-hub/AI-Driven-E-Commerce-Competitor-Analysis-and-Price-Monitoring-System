@@ -3,9 +3,9 @@ import { styles } from '../styles/adminStyles';
 import Modal from './Modal';
 
 // Backend base URL (allow override via env if using Vite)
-const API_BASE = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_LLM_API_URL) ? import.meta.env.VITE_LLM_API_URL : 'http://localhost:5001';
+const API_BASE = import.meta.env.VITE_LLM_API_URL || 'http://localhost:5001';
 // Main backend URL for scraper and product data
-const BACKEND_URL = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_BACKEND_URL) ? import.meta.env.VITE_BACKEND_URL : 'http://localhost:8000';
+const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:8000';
 
 const QAAssistantView = () => {
   const [input, setInput] = useState('');
