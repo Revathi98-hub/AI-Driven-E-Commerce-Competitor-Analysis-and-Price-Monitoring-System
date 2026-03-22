@@ -18,7 +18,7 @@ print("\n1️⃣ Testing Environment Variables...")
 groq_key = os.getenv('GROQ_API_KEY')
 mongo_uri = os.getenv('MONGO_URI')
 
-if not groq_key or groq_key == 'YOUR_GROQ_API_KEY_HERE':
+if not groq_key or groq_key == "your_groq_api_key":
     print("❌ GROQ_API_KEY not set!")
     print("   Get your free key from: https://console.groq.com")
     print("   Then update .env file")
