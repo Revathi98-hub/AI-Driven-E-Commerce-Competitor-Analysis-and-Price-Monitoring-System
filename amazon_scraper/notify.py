@@ -29,6 +29,7 @@ if MONGO_URI:
         client = MongoClient(MONGO_URI)
         db = client[MONGO_DB]
         alerts_col = db.get_collection('alerts')
+        alerts_col.create_index([("triggered_at", -1)]) # Improved index performance
     except Exception:
         logging.exception('Failed to initialize MongoDB client for notifier; continuing without DB')
 else:

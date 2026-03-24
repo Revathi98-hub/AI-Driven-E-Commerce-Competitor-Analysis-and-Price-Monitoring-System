@@ -67,6 +67,7 @@ if MONGO_URI:
         users_col = db['user']
         admins_col = db['admin']
         orders_col = db['orders']
+        db['alerts'].create_index([("triggered_at", -1)])
         logger.info("✓ Successfully connected to MongoDB Atlas")
     except (ConnectionFailure, ServerSelectionTimeoutError) as e:
         logger.warning(f"MongoDB Atlas connection failed: {e}")
